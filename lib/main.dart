@@ -30,7 +30,9 @@ class _DicePageState extends State<DicePage> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        Container(width: 50,),
         Center(
           child:
           Row(
@@ -63,7 +65,9 @@ class _DicePageState extends State<DicePage> {
           ),
         ),
         Center(
-          child: Row(children: [Container(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
             Text(getFinalDice(),style: TextStyle(
               fontSize: 100,
               color: Colors.white
