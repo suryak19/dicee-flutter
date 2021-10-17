@@ -29,36 +29,48 @@ class _DicePageState extends State<DicePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child:
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        //#TODO - Need to check why is this not working.
-        children: [
-          Expanded(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    onPressed: () {
+    return Column(
+      children: [
+        Center(
+          child:
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            //#TODO - Need to check why is this not working.
+            children: [
+              Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                        onPressed: () {
+                          changeDiceFace();
+                          print(
+                              'Left dice button got pressed with - $leftDiceNumber');
+                        },
+                        child: Image.asset('images/dice$leftDiceNumber.png')),
+                  )),
+              Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(onPressed: () {
                       changeDiceFace();
-                      print(
-                          'Left dice button got pressed with - $leftDiceNumber');
+                      print('Right dice button got pressed with $rightDiceNumber');
                     },
-                    child: Image.asset('images/dice$leftDiceNumber.png')),
-              )),
-          Expanded(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(onPressed: () {
-                  changeDiceFace();
-                  print('Right dice button got pressed with $rightDiceNumber');
-                },
-                    child: Image.asset('images/dice$rightDiceNumber.png')),
-              )),
-        ],
-      ),
+                        child: Image.asset('images/dice$rightDiceNumber.png')),
+                  )),
+            ],
+          ),
+        ),
+        Center(
+          child: Row(children: [Container(),
+            Text(getFinalDice(),style: TextStyle(
+              fontSize: 100,
+              color: Colors.white
+            ),)
+          ],),
+        )
+      ],
     );
   }
 
@@ -69,5 +81,10 @@ class _DicePageState extends State<DicePage> {
       leftDiceNumber = Random().nextInt(6) + 1;
       rightDiceNumber = Random().nextInt(6) + 1;
     });
+  }
+
+  String getFinalDice(){
+    int finalVal = leftDiceNumber+rightDiceNumber;
+    return finalVal.toString();
   }
 }
